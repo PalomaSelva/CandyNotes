@@ -1,12 +1,26 @@
-import { FiLock, FiMail } from "react-icons/fi";
+import { FiLock, FiMail, FiUser } from "react-icons/fi";
 import { Button } from "../../components/Button"
 import { Input } from "../../components/Input";
 import { Container, TextsContent, ImageContent } from "./style";
+import { useState } from "react";
 import backgroundImg from "../../assets/imagem-login.png"
 
 import { Link } from "react-router-dom";
 
-export function SignUp(){
+export function SignUp() {
+    const [name,setName] = useState('')
+    const [email,setEmail] = useState('')
+    const [password, setPassword] = useState('')
+    
+    function handleSignup() {
+
+        if (!name || !email || !password) {
+            return alert("Preencha todos os campos e tente novamente!")
+        }
+        
+        alert("Cadastrado com sucesso!")
+    }
+
     return(
         <Container>
             <TextsContent>
@@ -21,12 +35,28 @@ export function SignUp(){
                             Faça seu login
                         </h2>
                         <form>
-                            <Input icon={FiMail} placeholder="E-mail" type="email"/>
-                            <Input icon={FiLock} placeholder="Senha" type="password"/>
-                            <Button title="Cadastrar"/>
+                            <Input
+                                icon={FiUser}
+                                placeholder="Nome"
+                                type="text"
+                                onChange={e=> setName(e.target.value)}
+                            />
+                            <Input
+                                icon={FiMail}
+                                placeholder="E-mail"
+                                type="email"
+                                onChange={e=> setEmail(e.target.value)}
+                            />
+                            <Input
+                                icon={FiLock}
+                                placeholder="Senha"
+                                type="password"
+                                onChange={e=>setPassword(e.target.value)}
+                            />
+                            <Button title="Cadastrar" onClick={handleSignup} />
                         </form>
 
-                        <Link to="/">
+                        <Link to="/" className="back-login">
                             Voltar para o login
                         </Link>
                     </main>

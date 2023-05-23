@@ -44,7 +44,7 @@ export const TextsContent = styled.div`
             gap: 1.2rem;
         }
         
-        a{
+        .new-account{
             color:${({theme})=>theme.COLORS.ORANGE};
             display: block;
             text-align: center;
