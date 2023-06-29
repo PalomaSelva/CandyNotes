@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import { Container, Tags } from './style'
 import { ButtonText } from '../../components/ButtonText'
 import { EditTag } from '../../components/EditTag'
@@ -8,6 +9,13 @@ import { Textarea } from '../../components/Textarea'
 import { Button } from '../../components/Button'
 import { Link } from 'react-router-dom'
 export function NewNote() {
+  const [links, useLinks] = useState([])
+  const [newLink, setNewLink] = useState('')
+
+  function handleAddLink() {
+    setLinks((prevState) => [...prevState, newLink])
+    setNewLinks('')
+  }
   return (
     <Container>
       <Header />
@@ -27,8 +35,7 @@ export function NewNote() {
             </div>
 
             <Section title="Links úteis">
-              <EditTag value="paominhalinda.com.br" />
-              <EditTag isNew placeholder="Novo Link" />
+              <EditTag isNew placeholder="Novo Link" value={newLink}/>
             </Section>
 
             <Section title="Marcadores">
