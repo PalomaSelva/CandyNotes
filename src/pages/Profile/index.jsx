@@ -24,7 +24,6 @@ export function Profile() {
       password: newPassword,
       old_password: oldPassword,
     }
-
     await updateProfile({ user })
   }
   return (

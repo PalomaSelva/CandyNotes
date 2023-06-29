@@ -40,6 +40,8 @@ function AuthProvider({ children }) {
   async function updateProfile({ user }) {
     try {
       await api.put('/users', user)
+      user.password = ''
+      user.old_password = ''
       localStorage.setItem('candynotes: user', JSON.stringify(user))
       setData({ user, token: data.token })
       alert('Perfil atualizado')

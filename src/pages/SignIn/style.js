@@ -25,33 +25,10 @@ export const TextsContent = styled.div`
       color: ${({ theme }) => theme.COLORS.ORANGE};
       text-align: center;
     }
-<<<<<<< HEAD
     p {
       color: ${({ theme }) => theme.COLORS.GRAY_100};
       font-size: 1.4rem;
       text-align: center;
-=======
-    
-    main{
-        width: 100% ;
-        h2{
-            text-align: center;
-            margin-bottom: 2.6rem;
-        }
-        form{
-            display: flex;
-            flex-direction: column;
-            gap: 1.2rem;
-        }
-        
-        .new-account{
-            color:${({theme})=>theme.COLORS.ORANGE};
-            display: block;
-            text-align: center;
-            position: relative;
-            top:4rem;
-        }
->>>>>>> ad4d9a90ff410c74e1e58f531c2c9ba839748141
     }
   }
 
@@ -66,7 +43,7 @@ export const TextsContent = styled.div`
       flex-direction: column;
       gap: 1.2rem;
     }
-}
+  }
 `
 
 export const ImageContent = styled.div`
