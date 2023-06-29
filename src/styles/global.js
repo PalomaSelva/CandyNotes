@@ -1,4 +1,4 @@
-import { createGlobalStyle } from "styled-components";
+import { createGlobalStyle } from 'styled-components'
 
 export default createGlobalStyle`
     *{
@@ -10,8 +10,8 @@ export default createGlobalStyle`
         font-size: 62.5%;
     }
     body{
-        background-color:${({theme}) => theme.COLORS.BACKGROUND_800};
-        color:${({theme}) => theme.COLORS.WHITE};
+        background-color:${({ theme }) => theme.COLORS.BACKGROUND_800};
+        color:${({ theme }) => theme.COLORS.WHITE};
         -webkit-font-smoothing: antialiased;
     }
     body,input, button, textarea{
@@ -31,6 +31,14 @@ export default createGlobalStyle`
         filter: brightness(0.9);
     }
 
+    .sign-link{
+            color:${({ theme }) => theme.COLORS.ORANGE};
+            display: block;
+            text-align: center;
+            position: relative;
+            top:4rem;
+    }
+
     /* scrollbar */
 
     /* width */
@@ -40,21 +48,21 @@ export default createGlobalStyle`
 
     /* Track */
     ::-webkit-scrollbar-track {
-    background: ${({theme})=>theme.COLORS.GRAY_100};
+    background: ${({ theme }) => theme.COLORS.GRAY_100};
     }
 
     /* Handle */
     ::-webkit-scrollbar-thumb {
-    background: ${({theme})=>theme.COLORS.GRAY_300};
+    background: ${({ theme }) => theme.COLORS.GRAY_300};
 }
 
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
-    background: ${({theme})=>theme.COLORS.ORANGE};
+    background: ${({ theme }) => theme.COLORS.ORANGE};
     }
 
     .link{
-        color: ${({theme})=>theme.COLORS.GRAY_100}
+        color: ${({ theme }) => theme.COLORS.GRAY_100}
 
     }
-`;
+`

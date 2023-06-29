@@ -1,9 +1,5 @@
-import { Container } from "./style";
+import { Container } from './style'
 
-export function Tag({text, ...rest}){
-    return(
-        <Container {...rest}>
-            {text}
-        </Container>
-    )
+export function Tag({ text, ...rest }) {
+  return <Container {...rest}>{text}</Container>
 }
