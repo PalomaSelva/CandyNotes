@@ -37,12 +37,21 @@ function AuthProvider({ children }) {
     setData({})
   }
 
-  async function updateProfile({ user }) {
+  async function updateProfile({ user, avatarFile }) {
     try {
+      if (avatarFile) {
+        const fileUploadForm = new FormData()
+        fileUploadForm.append('avatar', avatarFile)
+
+        const response = await api.patch('/users/avatar', fileUploadForm)
+        user.avatar = response.data.avatar
+        console.log(user.avatar)
+      }
+
       await api.put('/users', user)
       user.password = ''
       user.old_password = ''
-      localStorage.setItem('candynotes: user', JSON.stringify(user))
+      localStorage.setItem('candynotes:user', JSON.stringify(user))
       setData({ user, token: data.token })
       alert('Perfil atualizado')
     } catch (error) {
@@ -72,9 +81,9 @@ function AuthProvider({ children }) {
     <AuthContext.Provider
       value={{
         signIn,
-        user: data.user,
         signOut,
         updateProfile,
+        user: data.user,
       }}
     >
       {children}

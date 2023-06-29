@@ -19,6 +19,7 @@ export const ProfileHeader = styled(Link)`
 
   > img {
     width: 7rem;
+    height: 7rem;
     border-radius: 50%;
   }
 

@@ -14,10 +14,6 @@ export const Container = styled.div`
       color: ${({ theme }) => theme.COLORS.GRAY_100};
     }
   }
-  img {
-    border-radius: 100%;
-    width: 18.6rem;
-  }
 `
 
 export const ContentProfile = styled.div`
@@ -43,6 +39,12 @@ export const Avatar = styled.div`
   width: fit-content;
   margin: 0 auto;
 
+  img {
+    border-radius: 100%;
+    width: 17.6rem;
+    height: 17.6rem;
+  }
+
   label {
     width: 4.8rem;
     height: 4.8rem;
@@ -55,6 +57,7 @@ export const Avatar = styled.div`
     top: -5.2rem;
     left: 73%;
     cursor: pointer;
+
     input {
       display: none;
     }

@@ -5,9 +5,10 @@ import { AiOutlineCamera } from 'react-icons/ai'
 import { FiUser, FiMail, FiLock } from 'react-icons/fi'
 import { Input } from '../../components/Input'
 import { Button } from '../../components/Button'
-
 import { Link } from 'react-router-dom'
 import { useAuth } from '../../hooks/auth'
+import { api } from '../../services/api'
+import avatarPlaceholder from '../../assets/img-placeholder.svg'
 
 export function Profile() {
   const { user, updateProfile } = useAuth()
@@ -17,6 +18,14 @@ export function Profile() {
   const [oldPassword, setOldPassword] = useState()
   const [newPassword, setNewPassword] = useState()
 
+  const avatarUrl = user.avatar
+    ? `${api.defaults.baseURL}/files/${user.avatar}`
+    : avatarPlaceholder
+
+  const [avatar, setAvatar] = useState(avatarUrl)
+  const [avatarFile, setAvatarFile] = useState(null)
+  console.log(user.avatar)
+
   async function handleUpdate() {
     const user = {
       name,
@@ -24,8 +33,18 @@ export function Profile() {
       password: newPassword,
       old_password: oldPassword,
     }
-    await updateProfile({ user })
+
+    await updateProfile({ user, avatarFile })
   }
+
+  function handleChangeAvatar(event) {
+    const file = event.target.files[0]
+    setAvatarFile(file)
+
+    const imagePreview = URL.createObjectURL(file)
+    setAvatar(imagePreview)
+  }
+
   return (
     <Container>
       <header>
@@ -35,10 +54,10 @@ export function Profile() {
       </header>
       <ContentProfile>
         <Avatar>
-          <img src="https://github.com/PalomaSelva.png" alt="" />
+          <img src={avatar} alt="Foto de perfil do usuário" />
           <label htmlFor="avatar">
             <AiOutlineCamera />
-            <input htmlFor="avatar" type="file" />
+            <input id="avatar" type="file" onChange={handleChangeAvatar} />
           </label>
         </Avatar>
         <form action="">
