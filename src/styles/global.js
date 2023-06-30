@@ -19,7 +19,9 @@ export default createGlobalStyle`
         font-size: 16px;
         outline: none;
     }
-
+    h1{
+        font-size: 4.6rem;
+    }
     a{
         text-decoration: none;
     }
@@ -32,11 +34,24 @@ export default createGlobalStyle`
     }
 
     .sign-link{
-            color:${({ theme }) => theme.COLORS.ORANGE};
-            display: block;
-            text-align: center;
-            position: relative;
-            top:4rem;
+        -webkit-background-clip: text !important;
+        -webkit-text-fill-color: transparent;
+        background: linear-gradient(
+            180deg,
+            rgba(255, 255, 255, 0.56) 3.65%,
+            rgb(239, 208, 221) 14.06%,
+            rgb(236, 198, 206) 29.17%,
+            rgb(240, 202, 209) 48.44%,
+            rgb(239, 151, 182) 73.44%
+        );
+        background-clip: text;
+        color: transparent;
+        display: block;
+        text-align: center;
+        position: relative;
+        top:4rem;
+        font-weight: 700;
+        font-size: 1.8rem;
     }
 
     /* scrollbar */
@@ -58,7 +73,7 @@ export default createGlobalStyle`
 
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
-    background: ${({ theme }) => theme.COLORS.ORANGE};
+    background: ${({ theme }) => theme.COLORS.PINK};
     }
 
     .link{

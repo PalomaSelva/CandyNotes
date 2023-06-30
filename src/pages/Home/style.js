@@ -24,7 +24,21 @@ export const Logo = styled.div`
   place-items: center;
   border-bottom: 0.1rem solid ${({ theme }) => theme.COLORS.BACKGROUND_700};
   background-color: ${({ theme }) => theme.COLORS.BACKGROUND_900};
-  color: ${({ theme }) => theme.COLORS.ORANGE};
+
+  h2 {
+    -webkit-background-clip: text !important;
+    -webkit-text-fill-color: transparent;
+    background: linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0.56) 3.65%,
+      rgb(239, 208, 221) 14.06%,
+      rgb(236, 198, 206) 29.17%,
+      rgb(240, 202, 209) 48.44%,
+      rgb(239, 151, 182) 73.44%
+    );
+    background-clip: text;
+    color: transparent;
+  }
 `
 
 export const Menu = styled.ul`
@@ -55,7 +69,7 @@ export const Content = styled.div`
 
 export const NewNote = styled(Link)`
   grid-area: newnote;
-  background-color: ${({ theme }) => theme.COLORS.ORANGE};
+  background-color: ${({ theme }) => theme.COLORS.PINK};
   border: none;
   color: black;
   display: flex;

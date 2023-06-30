@@ -4,8 +4,8 @@ import { Link } from 'react-router-dom'
 export const Container = styled(Link)`
   width: 100%;
   height: 5.6rem;
-  background-color: ${({ theme }) => theme.COLORS.ORANGE};
-  color: ${({ theme }) => theme.COLORS.BACKGROUND_800};
+  background-color: ${({ theme }) => theme.COLORS.PINK};
+  color: ${({ theme }) => theme.COLORS.DARK_PINK};
   border: none;
   padding: 1.6rem;
   border-radius: 10px;

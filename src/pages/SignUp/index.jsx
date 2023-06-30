@@ -3,7 +3,7 @@ import { FiLock, FiMail, FiUser } from 'react-icons/fi'
 import { Button } from '../../components/Button'
 import { Input } from '../../components/Input'
 import { Container, TextsContent, ImageContent } from './style'
-import backgroundImg from '../../assets/imagem-login.png'
+import backgroundImg from '../../assets/background-sign.png'
 
 import { Link, useNavigate } from 'react-router-dom'
 import { api } from '../../services/api'

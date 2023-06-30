@@ -23,7 +23,7 @@ export const Container = styled.label`
     border: none;
 
     svg {
-      color: ${({ theme, isNew }) => (isNew ? theme.COLORS.ORANGE : 'red')};
+      color: ${({ theme, isNew }) => (isNew ? theme.COLORS.PINK : 'red')};
     }
   }
 `

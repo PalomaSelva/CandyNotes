@@ -4,7 +4,7 @@ import { FiLock, FiMail } from 'react-icons/fi'
 import { Button } from '../../components/Button'
 import { Input } from '../../components/Input'
 import { Container, TextsContent, ImageContent } from './style'
-import backgroundImg from '../../assets/imagem-login.png'
+import backgroundImg from '../../assets/background-sign.png'
 import { Link } from 'react-router-dom'
 
 export function SignIn() {

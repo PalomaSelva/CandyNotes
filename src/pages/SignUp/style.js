@@ -9,7 +9,7 @@ export const Container = styled.div`
 `
 
 export const TextsContent = styled.div`
-  width: 80rem;
+  width: 120rem;
 
   .cardLogin {
     margin: 0 auto;
@@ -17,19 +17,31 @@ export const TextsContent = styled.div`
     flex-direction: column;
     gap: 4.8rem;
     align-items: center;
-    width: clamp(30rem, 80%, 38rem);
+    width: clamp(30rem, 80%, 44rem);
     padding: 0 2rem;
   }
 
   .login-header {
     h1 {
-      color: ${({ theme }) => theme.COLORS.ORANGE};
+      -webkit-background-clip: text !important;
+      -webkit-text-fill-color: transparent;
+      background: linear-gradient(
+        180deg,
+        rgba(255, 255, 255, 0.56) 3.65%,
+        rgb(239, 208, 221) 14.06%,
+        rgb(236, 198, 206) 29.17%,
+        rgb(240, 202, 209) 48.44%,
+        rgb(239, 151, 182) 73.44%
+      );
+      background-clip: text;
+      color: transparent;
+
       text-align: center;
     }
 
     p {
       color: ${({ theme }) => theme.COLORS.GRAY_100};
-      font-size: 1.4rem;
+      font-size: 1.6rem;
       text-align: center;
     }
   }

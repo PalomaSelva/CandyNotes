@@ -7,6 +7,15 @@ export const Container = styled.div`
     padding: 0 min(10%, 14.8rem);
     display: flex;
     align-items: center;
+
+    button {
+      background: none;
+      border: none;
+    }
+    svg {
+      font-size: 3rem;
+      color: ${({ theme }) => theme.COLORS.GRAY_100};
+    }
   }
   a {
     svg {
@@ -51,7 +60,7 @@ export const Avatar = styled.div`
     display: grid;
     place-items: center;
     border-radius: 50%;
-    background-color: ${({ theme }) => theme.COLORS.ORANGE};
+    background-color: ${({ theme }) => theme.COLORS.PINK};
     color: ${({ theme }) => theme.COLORS.BACKGROUND_800};
     position: relative;
     top: -5.2rem;

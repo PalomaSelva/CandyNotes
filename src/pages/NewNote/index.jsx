@@ -6,8 +6,9 @@ import { Input } from '../../components/Input'
 import { Section } from '../../components/Section'
 import { Textarea } from '../../components/Textarea'
 import { Button } from '../../components/Button'
-import { Link, useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import { api } from '../../services/api'
+import { ButtonText } from '../../components/ButtonText'
 
 export function NewNote() {
   const [title, setTitle] = useState('')
@@ -37,10 +38,16 @@ export function NewNote() {
   function handleRemoveTag(deleted) {
     setTags((prevState) => prevState.filter((tag) => tag !== deleted))
   }
+  function handleBack() {
+    navigate(-1)
+  }
 
   async function handleNewNote() {
     if (!title) {
       return alert('Digite o título da nota')
+    }
+    if (!description) {
+      return alert('Digite a descrição da nota')
     }
 
     if (newLink) {
@@ -55,15 +62,15 @@ export function NewNote() {
       )
     }
 
+    alert('Nota criada com sucesso!')
+    navigate(-1)
+
     await api.post('/notes', {
       title,
       description,
       tags,
       links,
     })
-
-    alert('Nota criada com sucesso!')
-    navigate('/')
   }
 
   return (
@@ -73,9 +80,8 @@ export function NewNote() {
         <div className="container">
           <header>
             <h1>Criar nota</h1>
-            <Link className="link" to="/">
-              Voltar
-            </Link>
+
+            <ButtonText text="Voltar" onClick={handleBack} />
           </header>
 
           <form>

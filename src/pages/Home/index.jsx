@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import { useNavigate } from 'react-router-dom'
+// import { useNavigate } from 'react-router-dom'
 import { FiPlus } from 'react-icons/fi'
 import { Header } from '../../components/Header'
 import { Container, Logo, Menu, Search, Content, NewNote } from './style'
@@ -8,6 +8,7 @@ import { Input } from '../../components/Input'
 import { Section } from '../../components/Section'
 import { Note } from '../../components/Note'
 import { api } from '../../services/api'
+import { useNavigate } from 'react-router-dom'
 
 export function Home() {
   const [search, setSearch] = useState('')
@@ -18,6 +19,7 @@ export function Home() {
   const navigate = useNavigate()
 
   function handleTagSelected(tagName) {
+    // limpar todos os filtros ao clicar em "todos"
     if (tagName === 'all') {
       return setTagsSelected([])
     }
@@ -54,18 +56,18 @@ export function Home() {
     }
 
     fetchNotes()
-  }, [tagsSelected, search])
+  }, [tagsSelected, search]) // o useEffect vai rodar toda vez que o estado desses 2 for alterado
 
   return (
     <Container>
       <Logo>
-        <h2>RocketNotes</h2>
+        <h2>CandyNotes</h2>
       </Logo>
 
       <Menu>
         <li>
           <ButtonText
-            title="Todos"
+            text="Todos"
             onClick={() => handleTagSelected('all')}
             isActive={tagsSelected.length === 0}
           />
@@ -74,9 +76,9 @@ export function Home() {
           tags.map((tag) => (
             <li key={String(tag.id)}>
               <ButtonText
-                title={tag.name}
+                text={tag.name}
                 onClick={() => handleTagSelected(tag.name)}
-                isActive={tagsSelected.includes(tag.name)}
+                isActive={tagsSelected.includes(tag.name)} // para saber se o tag.name está dentro da tag selecionada. Se a tag existir lá dentro, vai retornar um, valor verdadeiro
               />
             </li>
           ))}
@@ -90,32 +92,24 @@ export function Home() {
       <Header />
 
       <Search>
-        <Input placeholder="Pesquisar pelo título" type="text" />
+        <Input
+          placeholder="Pesquisar pelo título"
+          type="text"
+          onChange={(e) => setSearch(e.target.value)}
+        />
       </Search>
 
       <Content>
         <Section title="Minhas Notas">
           <div className="Notes-section">
-            <Note
-              data={{
-                title: 'Introdução ao React',
-                tags: [
-                  { id: 1, name: 'React' },
-                  { id: 2, name: 'Modal' },
-                ],
-              }}
-            />{' '}
+            {notes.map((note) => (
+              <Note
+                key={note.id}
+                data={note}
+                onClick={() => handleDetails(note.id)}
+              />
+            ))}
             {/* chaves para dizer q é um objeto */}
-            <Note
-              data={{
-                title: 'React Modal',
-                tags: [
-                  { id: 1, name: 'React' },
-                  { id: 2, name: 'Modal' },
-                ],
-              }}
-            />{' '}
-            {/* 2 chaves para dizer q é um objeto */}
           </div>
         </Section>
       </Content>
