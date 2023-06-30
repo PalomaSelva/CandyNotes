@@ -40,7 +40,7 @@ export function SignUp() {
       <TextsContent>
         <div className="cardLogin">
           <div className="login-header">
-            <h1>Rocket Notes</h1>
+            <h1>CandyNotes</h1>
             <p>Aplicação para salvar e gerenciar seus links úteis.</p>
           </div>
 
