@@ -8,7 +8,7 @@ export const Container = styled.div`
 `
 
 export const TextsContent = styled.div`
-  width: 120rem;
+  width: 128rem;
 
   .cardLogin {
     margin: 0 auto;
