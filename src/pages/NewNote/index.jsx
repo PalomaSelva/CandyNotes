@@ -33,6 +33,7 @@ export function NewNote() {
 
   function handleAddTag() {
     setTags((prevState) => [...prevState, newTag])
+    setNewLink('')
   }
 
   function handleRemoveTag(deleted) {
