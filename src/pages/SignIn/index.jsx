@@ -6,7 +6,7 @@ import { Input } from '../../components/Input'
 import { Container, TextsContent, ImageContent } from './style'
 import backgroundImg from '../../assets/sign-in.png'
 import { Link } from 'react-router-dom'
-import { ErrorMessage } from '../../components/errorMessage'
+import { ErrorMessage } from '../../components/ErrorMessage'
 
 export function SignIn() {
   const [email, setEmail] = useState('')

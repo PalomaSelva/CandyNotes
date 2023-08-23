@@ -10,7 +10,7 @@ import { useNavigate } from 'react-router-dom'
 import { api } from '../../services/api'
 import { ButtonText } from '../../components/ButtonText'
 import { Modal } from '../../components/Modal'
-import { ErrorMessage } from '../../components/errorMessage'
+import { ErrorMessage } from '../../components/ErrorMessage'
 
 export function NewNote() {
   const [OpenModal, setOpenModal] = useState(false)
