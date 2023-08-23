@@ -1,10 +1,20 @@
+import { useFormContext } from 'react-hook-form'
 import { Container } from './style'
-export function Input({ icon: Icon, ...rest }) {
+
+export function Input({ icon: Icon, name, stateValue, ...rest }) {
+  const { register } = useFormContext()
+
   return (
     <Container>
-      {Icon && <Icon />}{' '}
-      {/* significa que ele não vai exigir um ícone. Se não tiver, a aplicação vai rodar igualmente e vai ignorar essa linha */}
-      <input {...rest} />
+      {Icon && <Icon />}
+      <input
+        {...register(name)}
+        {...rest}
+        onChange={(e) => {
+          register(name).onChange(e) // Manually update the input value
+          stateValue(e.target.value) // Update the state value if needed
+        }}
+      />
     </Container>
   )
 }

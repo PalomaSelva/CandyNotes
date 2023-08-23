@@ -9,15 +9,14 @@ import { useAuth } from '../../hooks/auth'
 import { api } from '../../services/api'
 import avatarPlaceholder from '../../assets/img-placeholder.svg'
 import { useNavigate } from 'react-router-dom'
+import { Modal } from '../../components/Modal'
 
 export function Profile() {
-  const { user, updateProfile } = useAuth()
-
+  const { user, updateProfile, OpenModal, errorMessage } = useAuth()
   const [name, setName] = useState(user.name)
   const [email, setEmail] = useState(user.email)
   const [oldPassword, setOldPassword] = useState()
   const [newPassword, setNewPassword] = useState()
-
   const navigate = useNavigate()
 
   const avatarUrl = user.avatar
@@ -26,7 +25,6 @@ export function Profile() {
 
   const [avatar, setAvatar] = useState(avatarUrl)
   const [avatarFile, setAvatarFile] = useState(null)
-  console.log(user.avatar)
 
   async function handleUpdate() {
     const updated = {
@@ -95,11 +93,12 @@ export function Profile() {
               type="password"
               onChange={(e) => setNewPassword(e.target.value)}
             />
-
+            {errorMessage && <div>{errorMessage}</div>}
             <Button title="Salvar" onClick={handleUpdate} />
           </div>
         </form>
       </ContentProfile>
+      <Modal message="Perfil atualizado com sucesso" isOpen={OpenModal} />
     </Container>
   )
 }

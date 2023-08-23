@@ -10,13 +10,17 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@hookform/resolvers": "^3.3.0",
     "@typescript-eslint/typescript-estree": "^5.1.0",
     "axios": "^1.4.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-hook-form": "^7.45.4",
     "react-icons": "^4.8.0",
     "react-router-dom": "^6.11.0",
-    "styled-components": "^5.3.9"
+    "styled-components": "^5.3.9",
+    "yup": "^1.2.0",
+    "yup-password": "^0.2.2"
   },
   "devDependencies": {
     "@rocketseat/eslint-config": "^1.2.0",

@@ -5,7 +5,8 @@ export const AuthContext = createContext({})
 
 function AuthProvider({ children }) {
   const [data, setData] = useState({})
-
+  const [OpenModal, setOpenModal] = useState(false)
+  const [errorMessage, setErrorMessage] = useState()
   async function signIn({ email, password }) {
     try {
       const response = await api.post('/session', { email, password })
@@ -45,7 +46,6 @@ function AuthProvider({ children }) {
 
         const response = await api.patch('/users/avatar', fileUploadForm)
         user.avatar = response.data.avatar
-        console.log(user.avatar)
       }
 
       await api.put('/users', user)
@@ -53,12 +53,17 @@ function AuthProvider({ children }) {
       user.old_password = ''
       localStorage.setItem('candynotes:user', JSON.stringify(user))
       setData({ user, token: data.token })
-      alert('Perfil atualizado')
+      setOpenModal(true)
+      setTimeout(() => {
+        setOpenModal(false)
+      }, 3100)
     } catch (error) {
       if (error.response) {
-        return alert(error.response.data.message)
+        setErrorMessage(error.response.data.message)
+        // return alert(error.response.data.message)
       } else {
-        return alert('Não foi possível atualizar o perfil')
+        setErrorMessage('Não foi possível atualizar o perfil')
+        // return alert('Não foi possível atualizar o perfil')
       }
     }
   }
@@ -84,6 +89,8 @@ function AuthProvider({ children }) {
         signOut,
         updateProfile,
         user: data.user,
+        OpenModal,
+        errorMessage,
       }}
     >
       {children}
