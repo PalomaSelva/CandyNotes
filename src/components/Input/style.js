@@ -15,6 +15,16 @@ export const Container = styled.div`
     color: ${({ theme }) => theme.COLORS.WHITE};
     width: 100%;
   }
+
+  /* Cor de fundo do autocomplete */
+  input:-webkit-autofill {
+    -webkit-box-shadow: 0 0 0 30px ${({ theme }) => theme.COLORS.BACKGROUND_900}
+      inset;
+  }
+  /* Cor do texto do autocomplete */
+  input:-webkit-autofill {
+    -webkit-text-fill-color: ${({ theme }) => theme.COLORS.WHITE};
+  }
   &::placeholder {
     color: ${({ theme }) => theme.COLORS.GRAY_300};
   }

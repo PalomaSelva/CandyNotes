@@ -24,9 +24,9 @@ function AuthProvider({ children }) {
       })
     } catch (error) {
       if (error.response) {
-        return alert(error.response.data.message)
+        setErrorMessage(error.response.data.message)
       } else {
-        return alert('Não foi possível entrar na conta')
+        setErrorMessage('Não foi possível entrar na conta')
       }
     }
   }

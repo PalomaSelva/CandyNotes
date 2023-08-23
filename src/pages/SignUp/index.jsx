@@ -11,6 +11,7 @@ import { useForm, FormProvider } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup'
 import * as yup from 'yup'
 import YupPassword from 'yup-password'
+import { ErrorMessage } from '../../components/errorMessage'
 
 export function SignUp() {
   YupPassword(yup)
@@ -93,7 +94,7 @@ export function SignUp() {
                   type="text"
                   stateValue={setName}
                 />
-                {errors.name && <div>{errors.name.message}</div>}
+                {errors.name && <ErrorMessage message={errors.name.message} />}
                 <Input
                   icon={FiMail}
                   name="email"
@@ -101,7 +102,9 @@ export function SignUp() {
                   type="email"
                   stateValue={setEmail}
                 />
-                {errors.email && <div>{errors.email.message}</div>}
+                {errors.email && (
+                  <ErrorMessage message={errors.email.message} />
+                )}
                 <Input
                   icon={FiLock}
                   name="password"
@@ -111,7 +114,9 @@ export function SignUp() {
                 />
                 {errors.password?.types &&
                   Object.entries(errors.password?.types).map(
-                    ([type, message]) => <p key={type}>{message}</p>,
+                    ([type, message]) => (
+                      <ErrorMessage key={type} message={message} />
+                    ),
                   )}
 
                 <Button title="Cadastrar" type="submit" />

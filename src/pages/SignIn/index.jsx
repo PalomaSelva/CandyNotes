@@ -6,19 +6,21 @@ import { Input } from '../../components/Input'
 import { Container, TextsContent, ImageContent } from './style'
 import backgroundImg from '../../assets/sign-in.png'
 import { Link } from 'react-router-dom'
+import { FormProvider, useForm } from 'react-hook-form'
+import { ErrorMessage } from '../../components/errorMessage'
 
 export function SignIn() {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
+  const method = useForm()
+
+  const { handleSubmit } = method
 
   function handleSignIn() {
-    if (!email || !password) {
-      return alert('Preencha todos os campos!')
-    }
     signIn({ email, password })
   }
 
-  const { signIn } = useAuth()
+  const { signIn, errorMessage } = useAuth()
 
   return (
     <Container>
@@ -31,21 +33,26 @@ export function SignIn() {
 
           <main>
             <h2>Faça seu login</h2>
-            <form>
-              <Input
-                icon={FiMail}
-                placeholder="E-mail"
-                type="email"
-                onChange={(e) => setEmail(e.target.value)}
-              />
-              <Input
-                icon={FiLock}
-                placeholder="Senha"
-                type="password"
-                onChange={(e) => setPassword(e.target.value)}
-              />
-              <Button title="Entrar" onClick={handleSignIn} />
-            </form>
+            <FormProvider {...method}>
+              <form onSubmit={handleSubmit(handleSignIn)}>
+                <Input
+                  icon={FiMail}
+                  placeholder="E-mail"
+                  type="email"
+                  name="email"
+                  stateValue={setEmail}
+                />
+                <Input
+                  icon={FiLock}
+                  placeholder="Senha"
+                  type="password"
+                  name="password"
+                  stateValue={setPassword}
+                />
+                {errorMessage && <ErrorMessage message={errorMessage} />}
+                <Button title="Entrar" type="submit" />
+              </form>
+            </FormProvider>
 
             <Link to="/register" className="sign-link">
               Criar conta
