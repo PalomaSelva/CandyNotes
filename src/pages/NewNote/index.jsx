@@ -9,8 +9,11 @@ import { Button } from '../../components/Button'
 import { useNavigate } from 'react-router-dom'
 import { api } from '../../services/api'
 import { ButtonText } from '../../components/ButtonText'
+import { Modal } from '../../components/Modal'
+import { ErrorMessage } from '../../components/errorMessage'
 
 export function NewNote() {
+  const [OpenModal, setOpenModal] = useState(false)
   const [title, setTitle] = useState('')
   const [description, setDescription] = useState('')
 
@@ -21,6 +24,8 @@ export function NewNote() {
   const [newTag, setNewTag] = useState('')
 
   const navigate = useNavigate()
+
+  const [message, setMessage] = useState({})
 
   function handleAddLink() {
     setLinks((prevState) => [...prevState, newLink])
@@ -45,16 +50,32 @@ export function NewNote() {
 
   async function handleNewNote() {
     if (!title) {
-      return alert('Digite o título da nota')
+      setMessage(() => {
+        return {
+          title: 'Digite o título da nota.',
+        }
+      })
+
+      return
     }
     if (!description) {
-      return alert('Digite a descrição da nota')
+      setMessage(() => {
+        return {
+          description: 'Digite a descrição da nota.',
+        }
+      })
+
+      return
     }
 
     if (newLink) {
-      return alert(
-        'Você deixou um link no campo para adicionar, mas não clicou em adicionar. Clique para adicionar ou deixe o campo vazio.',
-      )
+      setMessage(() => {
+        return {
+          link: 'Você deixou um link no campo para adicionar, mas não clicou em adicionar. Clique para adicionar ou deixe o campo vazio.',
+        }
+      })
+
+      return
     }
 
     if (newTag) {
@@ -63,8 +84,11 @@ export function NewNote() {
       )
     }
 
-    alert('Nota criada com sucesso!')
-    navigate(-1)
+    setOpenModal(true)
+    setTimeout(() => {
+      setOpenModal(false)
+      navigate(-1)
+    }, 2100)
 
     await api.post('/notes', {
       title,
@@ -91,10 +115,14 @@ export function NewNote() {
                 placeholder="Título"
                 onChange={(e) => setTitle(e.target.value)}
               />
+              {message.title && <ErrorMessage message={message.title} />}
               <Textarea
                 placeholder="Observações"
                 onChange={(e) => setDescription(e.target.value)}
               />
+              {message.description && (
+                <ErrorMessage message={message.description} />
+              )}
             </div>
 
             <Section title="Links úteis">
@@ -114,6 +142,7 @@ export function NewNote() {
                 onChange={(e) => setNewLink(e.target.value)}
                 onClick={handleAddLink}
               />
+              {message.link && <ErrorMessage message={message.link} />}
             </Section>
 
             <Section title="Marcadores">
@@ -140,6 +169,7 @@ export function NewNote() {
           </form>
         </div>
       </main>
+      <Modal message="Nota criada com sucesso!" isOpen={OpenModal} />
     </Container>
   )
 }

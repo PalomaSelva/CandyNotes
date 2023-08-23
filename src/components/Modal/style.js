@@ -30,7 +30,7 @@ export const Container = styled.div`
       top: 0;
       border-radius: 6px 6px 0 0;
       background-color: ${({ theme }) => theme.COLORS.HOT_PINK};
-      animation: progress 3s linear forwards;
+      animation: progress 2s linear forwards;
     }
     .close-modal-icon {
       color: ${({ theme }) => theme.COLORS.GRAY_100};

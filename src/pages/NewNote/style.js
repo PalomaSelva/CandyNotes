@@ -57,7 +57,6 @@ export const Tags = styled.div`
   display: flex;
   flex-wrap: wrap;
   gap: 1.2rem;
-  justify-content: center;
   label {
     width: 48%;
   }

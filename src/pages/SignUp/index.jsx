@@ -62,7 +62,7 @@ export function SignUp() {
         setTimeout(() => {
           setOpenModal(false)
           navigate('/')
-        }, 3100)
+        }, 2100)
       })
       .catch((error) => {
         if (error.response) {

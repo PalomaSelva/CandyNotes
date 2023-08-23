@@ -56,7 +56,7 @@ function AuthProvider({ children }) {
       setOpenModal(true)
       setTimeout(() => {
         setOpenModal(false)
-      }, 3100)
+      }, 2100)
     } catch (error) {
       if (error.response) {
         setErrorMessage(error.response.data.message)
