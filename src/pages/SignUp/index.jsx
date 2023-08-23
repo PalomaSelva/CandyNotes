@@ -43,16 +43,15 @@ export function SignUp() {
     })
     .required()
 
-  const methods = useForm({
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({
     criteriaMode: 'all',
     resolver: yupResolver(schema),
   })
 
-  const {
-    handleSubmit,
-    formState: { errors },
-  } = methods
-  console.log(errors.email)
   function signUp(data) {
     console.log(data)
 
@@ -85,43 +84,51 @@ export function SignUp() {
 
           <main>
             <h2>Crie sua Conta</h2>
-            <FormProvider {...methods}>
-              <form onSubmit={handleSubmit(signUp)}>
-                <Input
-                  icon={FiUser}
-                  name="name"
-                  placeholder="Nome"
-                  type="text"
-                  stateValue={setName}
-                />
-                {errors.name && <ErrorMessage message={errors.name.message} />}
-                <Input
-                  icon={FiMail}
-                  name="email"
-                  placeholder="E-mail"
-                  type="email"
-                  stateValue={setEmail}
-                />
-                {errors.email && (
-                  <ErrorMessage message={errors.email.message} />
+            <form onSubmit={handleSubmit(signUp)}>
+              <Input
+                icon={FiUser}
+                register={register}
+                name="name"
+                placeholder="Nome"
+                type="text"
+                onChange={(e) => {
+                  register(name).onChange(e) // Manually update the input value
+                  setName(e.target.value)
+                }}
+              />
+              {errors.name && <ErrorMessage message={errors.name.message} />}
+              <Input
+                icon={FiMail}
+                register={register}
+                name="email"
+                placeholder="E-mail"
+                type="email"
+                onChange={(e) => {
+                  register(name).onChange(e)
+                  setEmail(e.target.value)
+                }}
+              />
+              {errors.email && <ErrorMessage message={errors.email.message} />}
+              <Input
+                icon={FiLock}
+                register={register}
+                name="password"
+                placeholder="Senha"
+                type="password"
+                onChange={(e) => {
+                  register(name).onChange(e)
+                  setPassword(e.target.value)
+                }}
+              />
+              {errors.password?.types &&
+                Object.entries(errors.password?.types).map(
+                  ([type, message]) => (
+                    <ErrorMessage key={type} message={message} />
+                  ),
                 )}
-                <Input
-                  icon={FiLock}
-                  name="password"
-                  placeholder="Senha"
-                  type="password"
-                  stateValue={setPassword}
-                />
-                {errors.password?.types &&
-                  Object.entries(errors.password?.types).map(
-                    ([type, message]) => (
-                      <ErrorMessage key={type} message={message} />
-                    ),
-                  )}
 
-                <Button title="Cadastrar" type="submit" />
-              </form>
-            </FormProvider>
+              <Button title="Cadastrar" type="submit" />
+            </form>
             <Link to="/" className="sign-link">
               Voltar para o login
             </Link>

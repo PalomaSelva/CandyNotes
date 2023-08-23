@@ -95,8 +95,8 @@ export function Home() {
         <Input
           placeholder="Pesquisar pelo título"
           type="text"
+          onChange={(e) => setSearch(e.target.value)}
           stateValue={setSearch}
-          name="search"
         />
       </Search>
 

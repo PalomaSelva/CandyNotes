@@ -1,20 +1,10 @@
-import { useFormContext } from 'react-hook-form'
 import { Container } from './style'
 
-export function Input({ icon: Icon, name, stateValue, ...rest }) {
-  const { register } = useFormContext()
-
+export function Input({ icon: Icon, register, name, ...rest }) {
   return (
     <Container>
       {Icon && <Icon />}
-      <input
-        {...register(name)}
-        {...rest}
-        onChange={(e) => {
-          register(name).onChange(e) // Manually update the input value
-          stateValue(e.target.value) // Update the state value if needed
-        }}
-      />
+      <input {...(register && { ...register(name) })} {...rest} />
     </Container>
   )
 }
