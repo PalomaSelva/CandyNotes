@@ -19,7 +19,7 @@ export function SignUp() {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [OpenModal, setOpenModal] = useState(false)
-
+  const [errorMessage, setErrorMessage] = useState()
   const navigate = useNavigate()
 
   const schema = yup
@@ -57,6 +57,7 @@ export function SignUp() {
 
     api
       .post('/users', { name, email, password })
+      .then(setErrorMessage())
       .then(() => {
         setOpenModal(true)
         setTimeout(() => {
@@ -66,7 +67,7 @@ export function SignUp() {
       })
       .catch((error) => {
         if (error.response) {
-          alert(error.response.data.message)
+          setErrorMessage(error.response.data.message)
         } else {
           alert('Não foi possível cadastrar o usuário')
         }
@@ -109,6 +110,7 @@ export function SignUp() {
                 }}
               />
               {errors.email && <ErrorMessage message={errors.email.message} />}
+              {errorMessage && <ErrorMessage message={errorMessage} />}
               <Input
                 icon={FiLock}
                 register={register}
